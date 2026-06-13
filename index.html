@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="新城中学学校介绍网站">
+  <title>新城中学 | 向新而行，逐梦成长</title>
+  <style>
+    :root {
+      --green: #175c47;
+      --green-dark: #0d3d30;
+      --red: #b43a32;
+      --gold: #d8aa4e;
+      --ink: #17231f;
+      --muted: #60706a;
+      --paper: #f6f8f5;
+      --white: #fff;
+      --line: #dce4df;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    .topbar {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      color: rgba(255,255,255,.78);
+      background: var(--green-dark);
+      font-size: 13px;
+    }
+    .topbar .container { display: flex; justify-content: space-between; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid rgba(23,92,71,.12);
+      backdrop-filter: blur(12px);
+    }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .seal {
+      width: 48px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--green);
+      border-radius: 50%;
+      color: var(--green);
+      font-family: SimSun, serif;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .brand strong { display: block; font-family: SimSun, serif; font-size: 23px; letter-spacing: 2px; }
+    .brand small { display: block; color: var(--muted); font-size: 10px; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 34px; font-size: 15px; font-weight: 700; }
+    .nav-links a { position: relative; padding: 26px 0; }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 18px;
+      left: 0;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transition: transform .2s ease;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .menu-btn { display: none; border: 0; background: none; color: var(--ink); font-size: 25px; cursor: pointer; }
+
+    .hero {
+      min-height: min(720px, calc(100vh - 112px));
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background: url("assets/school-campus.png") center 48% / cover no-repeat;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(7,35,27,.85) 0%, rgba(7,35,27,.44) 48%, rgba(7,35,27,.08) 78%), linear-gradient(0deg, rgba(7,35,27,.48), transparent 55%);
+    }
+    .hero-content { position: relative; z-index: 1; width: 100%; padding: 88px 0 74px; }
+    .hero-kicker { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 700; letter-spacing: 3px; }
+    .hero-kicker::before { content: ""; width: 38px; height: 3px; background: var(--gold); }
+    h1 { margin: 17px 0 18px; font-family: SimSun, serif; font-size: clamp(52px, 8vw, 94px); line-height: 1.05; letter-spacing: 4px; }
+    .hero p { max-width: 600px; margin: 0; color: rgba(255,255,255,.9); font-size: clamp(17px, 2vw, 21px); }
+    .hero-actions { display: flex; gap: 14px; margin-top: 34px; }
+    .btn { min-height: 48px; padding: 11px 24px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid transparent; font-weight: 700; transition: .2s ease; }
+    .btn-primary { background: var(--red); color: var(--white); }
+    .btn-primary:hover { background: #963029; transform: translateY(-2px); }
+    .btn-ghost { border-color: rgba(255,255,255,.6); color: var(--white); }
+    .btn-ghost:hover { background: var(--white); color: var(--green-dark); }
+
+    section { padding: 92px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 44px; }
+    .eyebrow { margin: 0 0 8px; color: var(--red); font-size: 13px; font-weight: 800; letter-spacing: 3px; }
+    h2 { margin: 0; font-family: SimSun, serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.25; letter-spacing: 2px; }
+    .section-head > p { max-width: 470px; margin: 0; color: var(--muted); }
+
+    .about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 68px; align-items: center; }
+    .about-copy > p { color: var(--muted); font-size: 17px; }
+    .motto { margin: 30px 0; padding: 23px 26px; border-left: 4px solid var(--red); background: var(--paper); }
+    .motto strong { display: block; color: var(--green); font-family: SimSun, serif; font-size: 24px; letter-spacing: 3px; }
+    .motto span { color: var(--muted); font-size: 14px; }
+    .stats { display: grid; grid-template-columns: repeat(2, 1fr); border: 1px solid var(--line); }
+    .stat { min-height: 150px; padding: 30px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stat:nth-child(even) { border-right: 0; }
+    .stat:nth-child(n+3) { border-bottom: 0; }
+    .stat strong { color: var(--green); font-family: Georgia, serif; font-size: 42px; line-height: 1; }
+    .stat span { margin-top: 10px; color: var(--muted); font-size: 14px; }
+
+    .features { background: #edf2ee; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #cfdad3; border: 1px solid #cfdad3; }
+    .feature { min-height: 300px; padding: 38px 32px; background: var(--white); }
+    .feature-num { color: var(--gold); font: 700 16px Georgia, serif; }
+    .feature h3 { margin: 55px 0 13px; font-family: SimSun, serif; font-size: 25px; }
+    .feature p { margin: 0; color: var(--muted); }
+    .feature-line { width: 30px; height: 3px; margin-top: 30px; background: var(--green); transition: width .25s ease; }
+    .feature:hover .feature-line { width: 76px; background: var(--red); }
+
+    .campus { padding-bottom: 0; background: var(--green-dark); color: var(--white); }
+    .campus .eyebrow { color: #efb9a9; }
+    .campus .section-head > p { color: rgba(255,255,255,.68); }
+    .campus-band { min-height: 330px; display: grid; grid-template-columns: repeat(3, 1fr); }
+    .life { position: relative; padding: 48px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-top: 1px solid rgba(255,255,255,.2); border-right: 1px solid rgba(255,255,255,.2); }
+    .life:last-child { border-right: 0; }
+    .life::before { content: ""; position: absolute; inset: 0; opacity: .15; background: repeating-linear-gradient(135deg, transparent 0 18px, rgba(255,255,255,.35) 18px 19px); }
+    .life:nth-child(2) { background: #824138; }
+    .life:nth-child(3) { background: #2b6656; }
+    .life b, .life span { position: relative; }
+    .life b { font-family: SimSun, serif; font-size: 27px; }
+    .life span { margin-top: 8px; color: rgba(255,255,255,.72); }
+
+    .notice-list { border-top: 2px solid var(--ink); }
+    .notice { display: grid; grid-template-columns: 115px 1fr auto; align-items: center; gap: 28px; padding: 25px 8px; border-bottom: 1px solid var(--line); }
+    .notice time { color: var(--green); font: 700 18px Georgia, serif; }
+    .notice strong { font-size: 17px; }
+    .notice span { color: var(--muted); font-size: 20px; }
+
+    footer { padding: 58px 0 26px; color: rgba(255,255,255,.72); background: #092c23; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 50px; padding-bottom: 45px; }
+    footer .brand strong { color: var(--white); }
+    footer .brand small { color: rgba(255,255,255,.55); }
+    footer .seal { border-color: rgba(255,255,255,.75); color: var(--white); }
+    .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; font-size: 14px; }
+    .contact b { display: block; margin-bottom: 3px; color: var(--white); }
+    .copyright { padding-top: 23px; display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.12); font-size: 12px; }
+    .placeholder-note { color: #f0ca78; }
+
+    @media (max-width: 800px) {
+      .topbar { display: none; }
+      nav { min-height: 68px; }
+      .menu-btn { display: block; }
+      .nav-links { position: absolute; top: 68px; right: 0; left: 0; display: none; padding: 16px 20px 24px; flex-direction: column; align-items: stretch; gap: 0; background: var(--white); border-bottom: 1px solid var(--line); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 0; }
+      .nav-links a::after { display: none; }
+      .hero { min-height: 650px; background-position: 62% center; }
+      .hero::before { background: linear-gradient(0deg, rgba(7,35,27,.88), rgba(7,35,27,.18)); }
+      .hero-content { padding-bottom: 54px; }
+      section { padding: 70px 0; }
+      .section-head { display: block; }
+      .section-head > p { margin-top: 15px; }
+      .about-grid, .footer-grid { grid-template-columns: 1fr; gap: 44px; }
+      .feature-grid, .campus-band { grid-template-columns: 1fr; }
+      .feature { min-height: 240px; }
+      .feature h3 { margin-top: 35px; }
+      .life { min-height: 220px; border-right: 0; }
+      .notice { grid-template-columns: 90px 1fr; gap: 12px; }
+      .notice span { display: none; }
+      .copyright { display: block; }
+      .copyright span { display: block; margin-top: 5px; }
+    }
+    @media (max-width: 480px) {
+      .container { width: min(100% - 28px, 1120px); }
+      .brand strong { font-size: 19px; }
+      .brand small { letter-spacing: 1px; }
+      .seal { width: 42px; }
+      h1 { font-size: 48px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { min-height: 120px; border-right: 0; }
+      .stat:nth-child(n) { border-bottom: 1px solid var(--line); }
+      .stat:last-child { border-bottom: 0; }
+      .contact { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="container"><span>立德树人 · 五育并举</span><span>欢迎访问新城中学</span></div></div>
+  <header>
+    <nav class="container">
+      <a class="brand" href="#home" aria-label="新城中学首页">
+        <span class="seal">新</span>
+        <span><strong>新城中学</strong><small>XINCHENG MIDDLE SCHOOL</small></span>
+      </a>
+      <button class="menu-btn" aria-label="打开导航" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="#about">学校概况</a><a href="#features">办学特色</a><a href="#campus">校园生活</a><a href="#news">校园动态</a><a href="#contact">联系我们</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content"><div class="container">
+        <div class="hero-kicker">在这里，看见未来</div>
+        <h1>新城中学</h1>
+        <p>让每一位少年被看见、被点亮，在求知与探索中成长为更好的自己。</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#about">走进新城</a><a class="btn btn-ghost" href="#features">了解办学特色</a></div>
+      </div></div>
+    </section>
+
+    <section class="about" id="about"><div class="container">
+      <div class="about-grid">
+        <div class="about-copy">
+          <p class="eyebrow">ABOUT XINCHENG</p><h2>以成长为中心<br>为未来奠基</h2>
+          <p>新城中学坚持立德树人，以学生全面发展为核心，努力建设有温度、有品质、有活力的校园。学校注重夯实基础、发展个性，让课堂学习与真实世界相连。</p>
+          <div class="motto"><strong>明德 · 笃学 · 求真 · 创新</strong><span>校训（示例，可按学校实际情况修改）</span></div>
+          <p>我们相信，教育不仅是知识的传递，更是好奇心、责任感和行动力的共同生长。</p>
+        </div>
+        <div class="stats" aria-label="学校数据（示例）">
+          <div class="stat"><strong data-value="36">0</strong><span>教学班级（示例）</span></div>
+          <div class="stat"><strong data-value="120">0</strong><span>教职员工（示例）</span></div>
+          <div class="stat"><strong data-value="1800">0</strong><span>在校学生（示例）</span></div>
+          <div class="stat"><strong data-value="20">0</strong><span>特色社团（示例）</span></div>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="features" id="features"><div class="container">
+      <div class="section-head"><div><p class="eyebrow">OUR EDUCATION</p><h2>多元课程，共同成长</h2></div><p>从扎实课堂到广阔校园，帮助学生发现兴趣、建立自信，形成面向未来的学习能力。</p></div>
+      <div class="feature-grid">
+        <article class="feature"><span class="feature-num">01</span><h3>品质课堂</h3><p>关注思维发生与深度参与，以问题驱动学习，让每一节课都成为探索与表达的空间。</p><div class="feature-line"></div></article>
+        <article class="feature"><span class="feature-num">02</span><h3>科技创新</h3><p>通过编程、机器人、创客实践等课程，培养科学精神、工程思维与协作能力。</p><div class="feature-line"></div></article>
+        <article class="feature"><span class="feature-num">03</span><h3>艺体素养</h3><p>丰富艺术、体育和社团活动，让学生在舞台、赛场与创作中舒展个性。</p><div class="feature-line"></div></article>
+      </div>
+    </div></section>
+
+    <section class="campus" id="campus"><div class="container">
+      <div class="section-head"><div><p class="eyebrow">CAMPUS LIFE</p><h2>校园，不止于课堂</h2></div><p>每一次奔跑、合作与创造，都在组成独一无二的青春记忆。</p></div>
+    </div><div class="campus-band">
+      <div class="life"><b>社团与实践</b><span>在兴趣中结识伙伴，在实践中理解世界</span></div>
+      <div class="life"><b>体育与健康</b><span>强健体魄，磨砺意志，享受运动乐趣</span></div>
+      <div class="life"><b>艺术与表达</b><span>用音乐、绘画与舞台表达青春想象</span></div>
+    </div></section>
+
+    <section id="news"><div class="container">
+      <div class="section-head"><div><p class="eyebrow">SCHOOL NEWS</p><h2>校园动态</h2></div><p class="placeholder-note">以下为示例内容，请替换为学校真实新闻。</p></div>
+      <div class="notice-list">
+        <a class="notice" href="#"><time>05.20</time><strong>科技文化节：让奇思妙想在校园落地</strong><span>→</span></a>
+        <a class="notice" href="#"><time>04.28</time><strong>春季田径运动会圆满举行</strong><span>→</span></a>
+        <a class="notice" href="#"><time>03.15</time><strong>家校携手，共话学生健康成长</strong><span>→</span></a>
+      </div>
+    </div></section>
+  </main>
+
+  <footer id="contact"><div class="container">
+    <div class="footer-grid">
+      <div><div class="brand"><span class="seal">新</span><span><strong>新城中学</strong><small>XINCHENG MIDDLE SCHOOL</small></span></div><p>向新而行，逐梦成长。</p></div>
+      <div class="contact"><div><b>学校地址</b><span>请填写学校真实地址</span></div><div><b>联系电话</b><span>请填写学校联系电话</span></div><div><b>电子邮箱</b><span>请填写学校邮箱</span></div><div><b>办公时间</b><span>周一至周五</span></div></div>
+    </div>
+    <div class="copyright">© 2026 新城中学 <span>本页面为学校介绍网站示例</span></div>
+  </div></footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-btn');
+    const navigation = document.querySelector('.nav-links');
+    menuButton.addEventListener('click', () => {
+      const open = navigation.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', open);
+      menuButton.textContent = open ? '×' : '☰';
+    });
+    navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navigation.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.textContent = '☰';
+    }));
+
+    const counters = document.querySelectorAll('[data-value]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const element = entry.target;
+        const target = Number(element.dataset.value);
+        const start = performance.now();
+        const update = now => {
+          const progress = Math.min((now - start) / 1000, 1);
+          element.textContent = Math.round(target * (1 - Math.pow(1 - progress, 3))) + '+';
+          if (progress < 1) requestAnimationFrame(update);
+        };
+        requestAnimationFrame(update);
+        observer.unobserve(element);
+      });
+    }, { threshold: .5 });
+    counters.forEach(counter => observer.observe(counter));
+  </script>
+</body>
+</html>
