@@ -1,21 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="新城中学学校介绍网站">
-  <title>新城中学 | 向新而行，逐梦成长</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="南京师范大学附属中学新城初级中学信息展示页。学校位于江苏省南京市建邺区黄山路123号。">
+  <title>南京师范大学附属中学新城初级中学｜学校信息展示</title>
   <style>
     :root {
-      --green: #175c47;
-      --green-dark: #0d3d30;
-      --red: #b43a32;
-      --gold: #d8aa4e;
-      --ink: #17231f;
-      --muted: #60706a;
-      --paper: #f6f8f5;
+      --navy: #102d48;
+      --navy-deep: #081d30;
+      --blue: #17669b;
+      --cyan: #67b9cf;
+      --red: #b9272f;
+      --gold: #d6b469;
+      --ink: #152535;
+      --muted: #647281;
+      --paper: #f3f6f8;
       --white: #fff;
-      --line: #dce4df;
+      --line: #dbe3e8;
     }
 
     * { box-sizing: border-box; }
@@ -25,292 +27,344 @@
       color: var(--ink);
       background: var(--paper);
       font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
-      line-height: 1.7;
+      line-height: 1.75;
     }
     a { color: inherit; text-decoration: none; }
     button { font: inherit; }
-    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .container { width: min(1160px, calc(100% - 40px)); margin: auto; }
 
-    .topbar {
-      height: 36px;
-      display: flex;
-      align-items: center;
-      color: rgba(255,255,255,.78);
-      background: var(--green-dark);
-      font-size: 13px;
+    .truth-bar {
+      padding: 8px 0;
+      color: rgba(255,255,255,.8);
+      background: var(--navy-deep);
+      font-size: 12px;
+      letter-spacing: .5px;
     }
-    .topbar .container { display: flex; justify-content: space-between; }
+    .truth-bar .container { display: flex; justify-content: space-between; gap: 20px; }
+    .truth-bar a { color: #bce4ef; }
+
     header {
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
       background: rgba(255,255,255,.96);
-      border-bottom: 1px solid rgba(23,92,71,.12);
-      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(16,45,72,.1);
+      backdrop-filter: blur(14px);
     }
-    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .seal {
-      width: 48px;
-      aspect-ratio: 1;
+    nav { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: flex; align-items: center; gap: 13px; }
+    .mark {
+      width: 50px;
+      height: 50px;
       display: grid;
       place-items: center;
-      border: 2px solid var(--green);
+      color: var(--white);
+      background: var(--navy);
       border-radius: 50%;
-      color: var(--green);
+      box-shadow: inset 0 0 0 3px var(--white), 0 0 0 1px var(--navy);
       font-family: SimSun, serif;
       font-size: 22px;
       font-weight: 700;
     }
-    .brand strong { display: block; font-family: SimSun, serif; font-size: 23px; letter-spacing: 2px; }
-    .brand small { display: block; color: var(--muted); font-size: 10px; letter-spacing: 2px; }
-    .nav-links { display: flex; align-items: center; gap: 34px; font-size: 15px; font-weight: 700; }
-    .nav-links a { position: relative; padding: 26px 0; }
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 18px;
-      left: 0;
-      height: 2px;
-      background: var(--red);
-      transform: scaleX(0);
-      transition: transform .2s ease;
-    }
-    .nav-links a:hover::after { transform: scaleX(1); }
-    .menu-btn { display: none; border: 0; background: none; color: var(--ink); font-size: 25px; cursor: pointer; }
+    .brand-name { display: block; font-family: SimSun, serif; font-size: 19px; font-weight: 700; line-height: 1.25; letter-spacing: 1px; }
+    .brand-en { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; letter-spacing: 1.4px; }
+    .nav-links { display: flex; align-items: center; gap: 30px; font-size: 14px; font-weight: 700; }
+    .nav-links a { padding: 28px 0 25px; border-bottom: 3px solid transparent; }
+    .nav-links a:hover { color: var(--blue); border-color: var(--red); }
+    .menu-btn { display: none; border: 0; background: none; color: var(--navy); font-size: 25px; cursor: pointer; }
 
     .hero {
-      min-height: min(720px, calc(100vh - 112px));
-      display: flex;
-      align-items: flex-end;
+      min-height: 690px;
       position: relative;
+      display: flex;
+      align-items: center;
       overflow: hidden;
       color: var(--white);
-      background: url("assets/school-campus.png") center 48% / cover no-repeat;
+      background: url("assets/school-campus.png") center / cover no-repeat;
     }
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(7,35,27,.85) 0%, rgba(7,35,27,.44) 48%, rgba(7,35,27,.08) 78%), linear-gradient(0deg, rgba(7,35,27,.48), transparent 55%);
+      background: linear-gradient(90deg, rgba(5,25,42,.94) 0%, rgba(9,42,68,.76) 45%, rgba(9,42,68,.16) 78%), linear-gradient(0deg, rgba(5,25,42,.38), transparent 50%);
     }
-    .hero-content { position: relative; z-index: 1; width: 100%; padding: 88px 0 74px; }
-    .hero-kicker { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 700; letter-spacing: 3px; }
-    .hero-kicker::before { content: ""; width: 38px; height: 3px; background: var(--gold); }
-    h1 { margin: 17px 0 18px; font-family: SimSun, serif; font-size: clamp(52px, 8vw, 94px); line-height: 1.05; letter-spacing: 4px; }
-    .hero p { max-width: 600px; margin: 0; color: rgba(255,255,255,.9); font-size: clamp(17px, 2vw, 21px); }
-    .hero-actions { display: flex; gap: 14px; margin-top: 34px; }
-    .btn { min-height: 48px; padding: 11px 24px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid transparent; font-weight: 700; transition: .2s ease; }
-    .btn-primary { background: var(--red); color: var(--white); }
-    .btn-primary:hover { background: #963029; transform: translateY(-2px); }
-    .btn-ghost { border-color: rgba(255,255,255,.6); color: var(--white); }
-    .btn-ghost:hover { background: var(--white); color: var(--green-dark); }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      bottom: -220px;
+      width: 620px;
+      height: 620px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 50%;
+      box-shadow: 0 0 0 70px rgba(255,255,255,.04), 0 0 0 140px rgba(255,255,255,.03);
+    }
+    .hero .container { position: relative; z-index: 2; }
+    .location { display: flex; align-items: center; gap: 10px; color: #bce4ef; font-size: 14px; font-weight: 700; letter-spacing: 2px; }
+    .location::before { content: ""; width: 34px; height: 2px; background: var(--red); }
+    h1 { max-width: 820px; margin: 20px 0 22px; font-family: SimSun, serif; font-size: clamp(42px, 6vw, 72px); line-height: 1.18; letter-spacing: 3px; }
+    .hero-lead { max-width: 660px; margin: 0; color: rgba(255,255,255,.87); font-size: clamp(17px, 2vw, 21px); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 33px; }
+    .hero-meta span { padding: 7px 14px; border: 1px solid rgba(255,255,255,.38); background: rgba(4,25,41,.26); font-size: 13px; }
+    .hero-actions { display: flex; gap: 13px; margin-top: 34px; }
+    .btn { min-height: 48px; padding: 11px 23px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid transparent; font-weight: 700; transition: .2s; }
+    .btn-primary { color: var(--white); background: var(--red); }
+    .btn-primary:hover { background: #961f26; transform: translateY(-2px); }
+    .btn-outline { color: var(--white); border-color: rgba(255,255,255,.6); }
+    .btn-outline:hover { color: var(--navy); background: var(--white); }
+    .photo-note { position: absolute; z-index: 2; right: 20px; bottom: 15px; color: rgba(255,255,255,.65); font-size: 11px; }
 
     section { padding: 92px 0; }
-    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 44px; }
-    .eyebrow { margin: 0 0 8px; color: var(--red); font-size: 13px; font-weight: 800; letter-spacing: 3px; }
-    h2 { margin: 0; font-family: SimSun, serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.25; letter-spacing: 2px; }
-    .section-head > p { max-width: 470px; margin: 0; color: var(--muted); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 44px; }
+    .eyebrow { margin: 0 0 7px; color: var(--red); font-size: 12px; font-weight: 800; letter-spacing: 3px; }
+    h2 { margin: 0; color: var(--navy); font-family: SimSun, serif; font-size: clamp(32px, 4.8vw, 48px); line-height: 1.25; letter-spacing: 2px; }
+    .section-head > p { max-width: 480px; margin: 0; color: var(--muted); }
 
-    .about { background: var(--white); }
-    .about-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 68px; align-items: center; }
-    .about-copy > p { color: var(--muted); font-size: 17px; }
-    .motto { margin: 30px 0; padding: 23px 26px; border-left: 4px solid var(--red); background: var(--paper); }
-    .motto strong { display: block; color: var(--green); font-family: SimSun, serif; font-size: 24px; letter-spacing: 3px; }
-    .motto span { color: var(--muted); font-size: 14px; }
-    .stats { display: grid; grid-template-columns: repeat(2, 1fr); border: 1px solid var(--line); }
-    .stat { min-height: 150px; padding: 30px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .stat:nth-child(even) { border-right: 0; }
-    .stat:nth-child(n+3) { border-bottom: 0; }
-    .stat strong { color: var(--green); font-family: Georgia, serif; font-size: 42px; line-height: 1; }
-    .stat span { margin-top: 10px; color: var(--muted); font-size: 14px; }
+    .facts { background: var(--white); }
+    .fact-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); }
+    .fact { min-height: 205px; padding: 31px; border-right: 1px solid var(--line); }
+    .fact:last-child { border: 0; }
+    .fact small { color: var(--red); font-weight: 800; letter-spacing: 1px; }
+    .fact strong { display: block; margin: 17px 0 9px; color: var(--navy); font: 700 36px/1.1 Georgia, serif; }
+    .fact span { color: var(--muted); font-size: 14px; }
+    .fact-note { margin: 16px 0 0; color: var(--muted); font-size: 12px; }
 
-    .features { background: #edf2ee; }
-    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #cfdad3; border: 1px solid #cfdad3; }
-    .feature { min-height: 300px; padding: 38px 32px; background: var(--white); }
-    .feature-num { color: var(--gold); font: 700 16px Georgia, serif; }
-    .feature h3 { margin: 55px 0 13px; font-family: SimSun, serif; font-size: 25px; }
-    .feature p { margin: 0; color: var(--muted); }
-    .feature-line { width: 30px; height: 3px; margin-top: 30px; background: var(--green); transition: width .25s ease; }
-    .feature:hover .feature-line { width: 76px; background: var(--red); }
+    .story-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 72px; align-items: start; }
+    .story-copy p { color: var(--muted); font-size: 16px; }
+    .quote { margin: 28px 0; padding: 24px 28px; color: var(--navy); background: var(--white); border-left: 4px solid var(--red); font-family: SimSun, serif; font-size: 21px; font-weight: 700; }
+    .timeline { border-top: 2px solid var(--navy); }
+    .time-row { display: grid; grid-template-columns: 86px 1fr; gap: 22px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .time-row b { color: var(--red); font: 700 20px Georgia, serif; }
+    .time-row p { margin: 0; color: var(--muted); }
 
-    .campus { padding-bottom: 0; background: var(--green-dark); color: var(--white); }
-    .campus .eyebrow { color: #efb9a9; }
-    .campus .section-head > p { color: rgba(255,255,255,.68); }
-    .campus-band { min-height: 330px; display: grid; grid-template-columns: repeat(3, 1fr); }
-    .life { position: relative; padding: 48px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-top: 1px solid rgba(255,255,255,.2); border-right: 1px solid rgba(255,255,255,.2); }
-    .life:last-child { border-right: 0; }
-    .life::before { content: ""; position: absolute; inset: 0; opacity: .15; background: repeating-linear-gradient(135deg, transparent 0 18px, rgba(255,255,255,.35) 18px 19px); }
-    .life:nth-child(2) { background: #824138; }
-    .life:nth-child(3) { background: #2b6656; }
-    .life b, .life span { position: relative; }
-    .life b { font-family: SimSun, serif; font-size: 27px; }
-    .life span { margin-top: 8px; color: rgba(255,255,255,.72); }
+    .education { color: var(--white); background: var(--navy); }
+    .education h2 { color: var(--white); }
+    .education .eyebrow { color: #8ed4e4; }
+    .education .section-head > p { color: rgba(255,255,255,.66); }
+    .course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.18); }
+    .course { min-height: 315px; padding: 38px; background: #143754; }
+    .course-num { color: var(--gold); font: 700 15px Georgia, serif; }
+    .course h3 { margin: 55px 0 14px; font-family: SimSun, serif; font-size: 25px; }
+    .course p { margin: 0; color: rgba(255,255,255,.67); }
+    .course i { display: block; width: 34px; height: 3px; margin-top: 28px; background: var(--cyan); transition: width .25s; }
+    .course:hover i { width: 82px; background: var(--red); }
 
-    .notice-list { border-top: 2px solid var(--ink); }
-    .notice { display: grid; grid-template-columns: 115px 1fr auto; align-items: center; gap: 28px; padding: 25px 8px; border-bottom: 1px solid var(--line); }
-    .notice time { color: var(--green); font: 700 18px Georgia, serif; }
-    .notice strong { font-size: 17px; }
-    .notice span { color: var(--muted); font-size: 20px; }
+    .verify { background: #e9f0f4; }
+    .verify-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .source-card { padding: 30px; background: var(--white); border-top: 4px solid var(--blue); box-shadow: 0 12px 36px rgba(16,45,72,.06); }
+    .source-card.gov { border-color: var(--red); }
+    .source-card small { color: var(--muted); font-weight: 700; }
+    .source-card h3 { margin: 11px 0 8px; color: var(--navy); font-family: SimSun, serif; font-size: 22px; }
+    .source-card p { margin: 0 0 20px; color: var(--muted); font-size: 14px; }
+    .source-card a { color: var(--blue); font-weight: 700; }
 
-    footer { padding: 58px 0 26px; color: rgba(255,255,255,.72); background: #092c23; }
-    .footer-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 50px; padding-bottom: 45px; }
-    footer .brand strong { color: var(--white); }
-    footer .brand small { color: rgba(255,255,255,.55); }
-    footer .seal { border-color: rgba(255,255,255,.75); color: var(--white); }
-    .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; font-size: 14px; }
-    .contact b { display: block; margin-bottom: 3px; color: var(--white); }
-    .copyright { padding-top: 23px; display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.12); font-size: 12px; }
-    .placeholder-note { color: #f0ca78; }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .address-card { padding: 38px; color: var(--white); background: var(--red); }
+    .address-card small { color: rgba(255,255,255,.72); letter-spacing: 2px; }
+    .address-card strong { display: block; margin: 12px 0 20px; font-family: SimSun, serif; font-size: 28px; line-height: 1.5; }
+    .address-card a { display: inline-flex; padding-bottom: 3px; border-bottom: 1px solid rgba(255,255,255,.6); font-weight: 700; }
+    .contact-copy p { color: var(--muted); }
+    .contact-copy .label { margin-top: 26px; color: var(--navy); font-weight: 700; }
 
-    @media (max-width: 800px) {
-      .topbar { display: none; }
-      nav { min-height: 68px; }
-      .menu-btn { display: block; }
-      .nav-links { position: absolute; top: 68px; right: 0; left: 0; display: none; padding: 16px 20px 24px; flex-direction: column; align-items: stretch; gap: 0; background: var(--white); border-bottom: 1px solid var(--line); }
+    footer { padding: 42px 0; color: rgba(255,255,255,.66); background: var(--navy-deep); font-size: 12px; }
+    .footer-row { display: flex; justify-content: space-between; gap: 30px; }
+    footer strong { color: var(--white); }
+
+    @media (max-width: 900px) {
+      .nav-links { position: absolute; top: 82px; right: 0; left: 0; display: none; padding: 12px 20px 22px; flex-direction: column; align-items: stretch; gap: 0; background: var(--white); border-bottom: 1px solid var(--line); }
       .nav-links.open { display: flex; }
-      .nav-links a { padding: 12px 0; }
-      .nav-links a::after { display: none; }
-      .hero { min-height: 650px; background-position: 62% center; }
-      .hero::before { background: linear-gradient(0deg, rgba(7,35,27,.88), rgba(7,35,27,.18)); }
-      .hero-content { padding-bottom: 54px; }
+      .nav-links a { padding: 11px 0; border: 0; }
+      .menu-btn { display: block; }
+      .fact-grid { grid-template-columns: 1fr 1fr; }
+      .fact:nth-child(2) { border-right: 0; }
+      .fact:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .story-grid, .contact-wrap { grid-template-columns: 1fr; gap: 45px; }
+    }
+    @media (max-width: 720px) {
+      .truth-bar { display: none; }
+      nav { min-height: 70px; }
+      .nav-links { top: 70px; }
+      .brand-name { max-width: 225px; font-size: 16px; }
+      .brand-en { display: none; }
+      .hero { min-height: 690px; background-position: 62% center; }
+      .hero::before { background: linear-gradient(0deg, rgba(5,25,42,.96), rgba(5,25,42,.28)); }
+      h1 { font-size: 42px; }
       section { padding: 70px 0; }
       .section-head { display: block; }
       .section-head > p { margin-top: 15px; }
-      .about-grid, .footer-grid { grid-template-columns: 1fr; gap: 44px; }
-      .feature-grid, .campus-band { grid-template-columns: 1fr; }
-      .feature { min-height: 240px; }
-      .feature h3 { margin-top: 35px; }
-      .life { min-height: 220px; border-right: 0; }
-      .notice { grid-template-columns: 90px 1fr; gap: 12px; }
-      .notice span { display: none; }
-      .copyright { display: block; }
-      .copyright span { display: block; margin-top: 5px; }
+      .course-grid, .verify-grid { grid-template-columns: 1fr; }
+      .course { min-height: 245px; }
+      .course h3 { margin-top: 35px; }
+      .footer-row { display: block; }
     }
-    @media (max-width: 480px) {
-      .container { width: min(100% - 28px, 1120px); }
-      .brand strong { font-size: 19px; }
-      .brand small { letter-spacing: 1px; }
-      .seal { width: 42px; }
-      h1 { font-size: 48px; }
+    @media (max-width: 470px) {
+      .container { width: min(100% - 28px, 1160px); }
+      .mark { width: 42px; height: 42px; font-size: 18px; }
+      .brand-name { max-width: 195px; font-size: 14px; }
       .hero-actions { flex-direction: column; align-items: stretch; }
-      .stats { grid-template-columns: 1fr; }
-      .stat { min-height: 120px; border-right: 0; }
-      .stat:nth-child(n) { border-bottom: 1px solid var(--line); }
-      .stat:last-child { border-bottom: 0; }
-      .contact { grid-template-columns: 1fr; }
+      .fact-grid { grid-template-columns: 1fr; }
+      .fact:nth-child(n) { border-right: 0; border-bottom: 1px solid var(--line); }
+      .fact:last-child { border-bottom: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="topbar"><div class="container"><span>立德树人 · 五育并举</span><span>欢迎访问新城中学</span></div></div>
+  <div class="truth-bar">
+    <div class="container">
+      <span>学校信息核验：南京市政府及建邺区政府公开资料</span>
+      <a href="#verify">查看信息来源 ↓</a>
+    </div>
+  </div>
+
   <header>
     <nav class="container">
-      <a class="brand" href="#home" aria-label="新城中学首页">
-        <span class="seal">新</span>
-        <span><strong>新城中学</strong><small>XINCHENG MIDDLE SCHOOL</small></span>
+      <a class="brand" href="#home" aria-label="返回首页">
+        <span class="mark">新城</span>
+        <span>
+          <strong class="brand-name">南京师范大学附属中学新城初级中学</strong>
+          <small class="brand-en">NANJING NORMAL UNIVERSITY AFFILIATED HIGH SCHOOL XINCHENG JUNIOR HIGH SCHOOL</small>
+        </span>
       </a>
       <button class="menu-btn" aria-label="打开导航" aria-expanded="false">☰</button>
       <div class="nav-links">
-        <a href="#about">学校概况</a><a href="#features">办学特色</a><a href="#campus">校园生活</a><a href="#news">校园动态</a><a href="#contact">联系我们</a>
+        <a href="#facts">学校概况</a>
+        <a href="#history">办学历程</a>
+        <a href="#education">课程特色</a>
+        <a href="#verify">信息核验</a>
+        <a href="#contact">学校位置</a>
       </div>
     </nav>
   </header>
 
   <main>
     <section class="hero" id="home">
-      <div class="hero-content"><div class="container">
-        <div class="hero-kicker">在这里，看见未来</div>
-        <h1>新城中学</h1>
-        <p>让每一位少年被看见、被点亮，在求知与探索中成长为更好的自己。</p>
-        <div class="hero-actions"><a class="btn btn-primary" href="#about">走进新城</a><a class="btn btn-ghost" href="#features">了解办学特色</a></div>
-      </div></div>
+      <div class="container">
+        <div class="location">江苏 · 南京 · 建邺</div>
+        <h1>南京师范大学附属中学<br>新城初级中学</h1>
+        <p class="hero-lead">2005 年由南京师大附中与建邺区教育局合作创办的公办初级中学，坐落于南京河西新城。</p>
+        <div class="hero-meta">
+          <span>公办初级中学</span>
+          <span>创办于 2005 年</span>
+          <span>建邺区黄山路 123 号</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#facts">了解学校</a>
+          <a class="btn btn-outline" href="https://www.nsfzxc.cn/" target="_blank" rel="noopener">访问学校官网 ↗</a>
+        </div>
+      </div>
+      <span class="photo-note">页面背景为校园主题示意图，非学校实景</span>
     </section>
 
-    <section class="about" id="about"><div class="container">
-      <div class="about-grid">
-        <div class="about-copy">
-          <p class="eyebrow">ABOUT XINCHENG</p><h2>以成长为中心<br>为未来奠基</h2>
-          <p>新城中学坚持立德树人，以学生全面发展为核心，努力建设有温度、有品质、有活力的校园。学校注重夯实基础、发展个性，让课堂学习与真实世界相连。</p>
-          <div class="motto"><strong>明德 · 笃学 · 求真 · 创新</strong><span>校训（示例，可按学校实际情况修改）</span></div>
-          <p>我们相信，教育不仅是知识的传递，更是好奇心、责任感和行动力的共同生长。</p>
+    <section class="facts" id="facts">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">SCHOOL PROFILE</p><h2>一所真实的新城学校</h2></div>
+          <p>以下基础信息来自南京河西新城管委会公开页面。涉及规模的数据为该页面于 2017 年发布的校史资料，不作为当前招生数据。</p>
         </div>
-        <div class="stats" aria-label="学校数据（示例）">
-          <div class="stat"><strong data-value="36">0</strong><span>教学班级（示例）</span></div>
-          <div class="stat"><strong data-value="120">0</strong><span>教职员工（示例）</span></div>
-          <div class="stat"><strong data-value="1800">0</strong><span>在校学生（示例）</span></div>
-          <div class="stat"><strong data-value="20">0</strong><span>特色社团（示例）</span></div>
+        <div class="fact-grid">
+          <article class="fact"><small>FOUNDED</small><strong>2005</strong><span>2005 年 7 月合作创办</span></article>
+          <article class="fact"><small>CAMPUS</small><strong>26,012㎡</strong><span>公开资料记载的校园占地面积</span></article>
+          <article class="fact"><small>BUILDING</small><strong>18,272㎡</strong><span>公开资料记载的总建筑面积</span></article>
+          <article class="fact"><small>LOCATION</small><strong>建邺</strong><span>南京市建邺区黄山路 123 号</span></article>
+        </div>
+        <p class="fact-note">数据来源：南京河西新城区开发建设管委会，发布日期 2017 年 3 月 20 日。</p>
+      </div>
+    </section>
+
+    <section id="history">
+      <div class="container story-grid">
+        <div class="story-copy">
+          <p class="eyebrow">OUR STORY</p>
+          <h2>根植附中传统<br>成长于河西新城</h2>
+          <div class="quote">传承“慎聘良师、锐意实验、校风诚朴、善育英才”的优良传统</div>
+          <p>学校按照现代初级中学的办学需要，配置教学楼、实验楼、办公楼、图书楼、室内体育馆、食堂及学科专用教室。学校以素质教育为基础，重视精细化管理与学生的全面发展。</p>
+          <p>“新城”不仅是校名，也是学校与南京河西新区共同成长的坐标。学校随后与黄山路分校、怡康街分校及新城小学相关校区共同构成新城教育集团的发展脉络。</p>
+        </div>
+        <div class="timeline" aria-label="学校发展时间线">
+          <div class="time-row"><b>2005</b><p>南京师大附中与建邺区教育局合作创办新城初级中学。</p></div>
+          <div class="time-row"><b>2010</b><p>合作创办新城小学，新城教育品牌进一步延伸。</p></div>
+          <div class="time-row"><b>2013</b><p>合作创办新城初中黄山路分校。</p></div>
+          <div class="time-row"><b>2014</b><p>合作创办新城初中怡康街分校。</p></div>
         </div>
       </div>
-    </div></section>
+    </section>
 
-    <section class="features" id="features"><div class="container">
-      <div class="section-head"><div><p class="eyebrow">OUR EDUCATION</p><h2>多元课程，共同成长</h2></div><p>从扎实课堂到广阔校园，帮助学生发现兴趣、建立自信，形成面向未来的学习能力。</p></div>
-      <div class="feature-grid">
-        <article class="feature"><span class="feature-num">01</span><h3>品质课堂</h3><p>关注思维发生与深度参与，以问题驱动学习，让每一节课都成为探索与表达的空间。</p><div class="feature-line"></div></article>
-        <article class="feature"><span class="feature-num">02</span><h3>科技创新</h3><p>通过编程、机器人、创客实践等课程，培养科学精神、工程思维与协作能力。</p><div class="feature-line"></div></article>
-        <article class="feature"><span class="feature-num">03</span><h3>艺体素养</h3><p>丰富艺术、体育和社团活动，让学生在舞台、赛场与创作中舒展个性。</p><div class="feature-line"></div></article>
+    <section class="education" id="education">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">CURRICULUM</p><h2>面向成长的课程体系</h2></div>
+          <p>学校公开资料显示，课程建设围绕共性素质、个性潜能与创新能力展开，并持续探索数字化教学与分层教学。</p>
+        </div>
+        <div class="course-grid">
+          <article class="course"><span class="course-num">01</span><h3>素质养成课程</h3><p>着眼学生共同基础与综合素养，在国家课程基础上推进校本化实施。</p><i></i></article>
+          <article class="course"><span class="course-num">02</span><h3>个性选择课程</h3><p>通过选修课程与社团活动回应兴趣差异，为个性特长提供发展空间。</p><i></i></article>
+          <article class="course"><span class="course-num">03</span><h3>特色创新课程</h3><p>开展数字化学习、分层教学等实践，培养探索精神与创造性人格。</p><i></i></article>
+        </div>
       </div>
-    </div></section>
+    </section>
 
-    <section class="campus" id="campus"><div class="container">
-      <div class="section-head"><div><p class="eyebrow">CAMPUS LIFE</p><h2>校园，不止于课堂</h2></div><p>每一次奔跑、合作与创造，都在组成独一无二的青春记忆。</p></div>
-    </div><div class="campus-band">
-      <div class="life"><b>社团与实践</b><span>在兴趣中结识伙伴，在实践中理解世界</span></div>
-      <div class="life"><b>体育与健康</b><span>强健体魄，磨砺意志，享受运动乐趣</span></div>
-      <div class="life"><b>艺术与表达</b><span>用音乐、绘画与舞台表达青春想象</span></div>
-    </div></section>
-
-    <section id="news"><div class="container">
-      <div class="section-head"><div><p class="eyebrow">SCHOOL NEWS</p><h2>校园动态</h2></div><p class="placeholder-note">以下为示例内容，请替换为学校真实新闻。</p></div>
-      <div class="notice-list">
-        <a class="notice" href="#"><time>05.20</time><strong>科技文化节：让奇思妙想在校园落地</strong><span>→</span></a>
-        <a class="notice" href="#"><time>04.28</time><strong>春季田径运动会圆满举行</strong><span>→</span></a>
-        <a class="notice" href="#"><time>03.15</time><strong>家校携手，共话学生健康成长</strong><span>→</span></a>
+    <section class="verify" id="verify">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">VERIFIED SOURCES</p><h2>信息从哪里来</h2></div>
+          <p>本页没有使用虚构的师生人数、联系电话、校训或校园新闻。点击下方来源，可直接核验学校名称、性质、地址与办学历史。</p>
+        </div>
+        <div class="verify-grid">
+          <article class="source-card gov">
+            <small>南京市政府部门公开资料</small>
+            <h3>河西新城教育配套介绍</h3>
+            <p>核验学校全称、创办时间、公办性质、地址、校园面积、办学设施和课程建设。</p>
+            <a href="https://newtown.nanjing.gov.cn/xcyx/pzxc/jypt/201703/t20170320_2110444.html" target="_blank" rel="noopener">打开政府原文 ↗</a>
+          </article>
+          <article class="source-card">
+            <small>学校网站</small>
+            <h3>新城初级中学官网</h3>
+            <p>学校官网提供新闻中心、学校概况、校史展览、部门工作等栏目。</p>
+            <a href="https://www.nsfzxc.cn/" target="_blank" rel="noopener">访问学校官网 ↗</a>
+          </article>
+        </div>
       </div>
-    </div></section>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-wrap">
+        <div class="contact-copy">
+          <p class="eyebrow">FIND THE SCHOOL</p>
+          <h2>在南京河西<br>找到新城初中</h2>
+          <p>学校本部位于南京市建邺区黄山路 123 号。黄山路分校、怡康街分校为不同办学地址，查询和导航时请注意区分。</p>
+          <p class="label">邮政编码：210019</p>
+        </div>
+        <div class="address-card">
+          <small>SCHOOL ADDRESS</small>
+          <strong>江苏省南京市建邺区<br>黄山路 123 号</strong>
+          <a href="https://www.amap.com/place/B0019074W7" target="_blank" rel="noopener">在高德地图中查看 ↗</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer id="contact"><div class="container">
-    <div class="footer-grid">
-      <div><div class="brand"><span class="seal">新</span><span><strong>新城中学</strong><small>XINCHENG MIDDLE SCHOOL</small></span></div><p>向新而行，逐梦成长。</p></div>
-      <div class="contact"><div><b>学校地址</b><span>请填写学校真实地址</span></div><div><b>联系电话</b><span>请填写学校联系电话</span></div><div><b>电子邮箱</b><span>请填写学校邮箱</span></div><div><b>办公时间</b><span>周一至周五</span></div></div>
+  <footer>
+    <div class="container footer-row">
+      <span><strong>南京师范大学附属中学新城初级中学</strong> · 信息展示页</span>
+      <span>本页面为重制展示作品，非学校官方网站；信息核验日期：2026 年 6 月 13 日</span>
     </div>
-    <div class="copyright">© 2026 新城中学 <span>本页面为学校介绍网站示例</span></div>
-  </div></footer>
+  </footer>
 
   <script>
-    const menuButton = document.querySelector('.menu-btn');
-    const navigation = document.querySelector('.nav-links');
-    menuButton.addEventListener('click', () => {
-      const open = navigation.classList.toggle('open');
-      menuButton.setAttribute('aria-expanded', open);
-      menuButton.textContent = open ? '×' : '☰';
-    });
-    navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      navigation.classList.remove('open');
-      menuButton.setAttribute('aria-expanded', 'false');
-      menuButton.textContent = '☰';
-    }));
+    const button = document.querySelector('.menu-btn');
+    const links = document.querySelector('.nav-links');
 
-    const counters = document.querySelectorAll('[data-value]');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const element = entry.target;
-        const target = Number(element.dataset.value);
-        const start = performance.now();
-        const update = now => {
-          const progress = Math.min((now - start) / 1000, 1);
-          element.textContent = Math.round(target * (1 - Math.pow(1 - progress, 3))) + '+';
-          if (progress < 1) requestAnimationFrame(update);
-        };
-        requestAnimationFrame(update);
-        observer.unobserve(element);
-      });
-    }, { threshold: .5 });
-    counters.forEach(counter => observer.observe(counter));
+    button.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      button.setAttribute('aria-expanded', String(open));
+      button.textContent = open ? '×' : '☰';
+    });
+
+    links.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      links.classList.remove('open');
+      button.setAttribute('aria-expanded', 'false');
+      button.textContent = '☰';
+    }));
   </script>
 </body>
 </html>
